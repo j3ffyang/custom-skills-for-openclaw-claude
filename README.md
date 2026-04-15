@@ -1,4 +1,4 @@
-# custom-skills-for-openclaw-claude
+# openclaw-custom-skills
 
 > A curated collection of production-ready **OpenClaw** skills published to the [ClawHub](https://clawhub.ai) registry — covering content creation, multilingual blog publishing, and AI-powered media generation.
 
@@ -107,8 +107,8 @@ openclaw skill install blog-polish-zhcn
 ### From this repository (local)
 
 ```bash
-git clone https://github.com/negtivSpaz/custom-skills-for-openclaw-claude.git
-cd custom-skills-for-openclaw-claude
+git clone https://github.com/negtivSpaz/openclaw-custom-skills.git
+cd openclaw-custom-skills
 
 # Install a skill from a local path
 openclaw skill install ./blog-polish-zhcn
