@@ -1,8 +1,5 @@
-# Personal bookmark data — never commit
-twitter-bookmarks-exporter/bookmarks.json
-twitter-bookmarks-exporter/output/
-
-# Claude local settings
+# Moved to claude-custom-skills repo
+twitter-bookmarks-exporter/
 .claude/
 
 # Python
