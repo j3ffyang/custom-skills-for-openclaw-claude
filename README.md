@@ -1,10 +1,11 @@
 # openclaw-custom-skills
 
-> A curated collection of OpenClaw/ClawHub-ready skills for content creation, multilingual blog publishing, and AI-powered media generation.
+> A curated collection of custom skills for **OpenClaw** and **Claude Code** — covering content creation, multilingual blog publishing, AI-powered media generation, and productivity automation.
 
 [![ClawHub Registry](https://img.shields.io/badge/registry-ClawHub-blue)](https://clawhub.ai)
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
-[![Skills](https://img.shields.io/badge/skills-12-orange)](#skills)
+[![OpenClaw Skills](https://img.shields.io/badge/openclaw%20skills-12-orange)](#openclaw-skills)
+[![Claude Commands](https://img.shields.io/badge/claude%20commands-1-purple)](#claude-code-commands)
 
 ---
 
@@ -12,13 +13,14 @@
 
 - [Overview](#overview)
 - [Prerequisites](#prerequisites)
-- [Skills](#skills)
+- [OpenClaw Skills](#openclaw-skills)
   - [Writing Framework](#writing-framework)
   - [Blog Polishing](#blog-polishing)
   - [Image Generation](#image-generation)
   - [Video Generation](#video-generation)
   - [Tibetan Buddhist Content](#tibetan-buddhist-content)
   - [Data & Productivity](#data--productivity)
+- [Claude Code Commands](#claude-code-commands)
 - [Installation](#installation)
 - [Usage](#usage)
 - [Contributing](#contributing)
@@ -28,7 +30,11 @@
 
 ## Overview
 
-This repository hosts production-ready OpenClaw skills published to the [ClawHub](https://clawhub.ai) registry. Each skill is a self-contained agent instruction set (`SKILL.md`) that drives an OpenClaw agent through a specific content workflow — from drafting and polishing technical blog posts to generating cinematic Tibetan Buddhist video media.
+This repository hosts two types of automation assets:
+
+**OpenClaw skills** — production-ready agent instruction sets (`SKILL.md`) published to the [ClawHub](https://clawhub.ai) registry. Each skill drives an OpenClaw agent through a specific content workflow.
+
+**Claude Code commands** — slash commands (`.claude/commands/`) that extend [Claude Code](https://claude.ai/code) with project-specific automation. Drop the `.claude/` folder into any project and the commands become available instantly via `/command-name`.
 
 **Key capabilities:**
 
@@ -37,10 +43,13 @@ This repository hosts production-ready OpenClaw skills published to the [ClawHub
 - Convert polished content into Astro-compatible markdown with YAML frontmatter
 - Produce cinematic MP4 videos from static images via Google Veo
 - Create culturally verified Tibetan Buddhist product articles with matched imagery
+- Export X/Twitter bookmarks to rich Markdown files for Obsidian, Notion, or any note-taking system
 
 ---
 
 ## Prerequisites
+
+### For OpenClaw skills
 
 - [OpenClaw CLI](https://openclaw.ai) installed and authenticated
 - ClawHub account (for installing registry skills)
@@ -49,9 +58,14 @@ This repository hosts production-ready OpenClaw skills published to the [ClawHub
   - Video generation: Google Veo (via Vertex AI / Gemini API)
   - Vision analysis: Google Gemini 2.5 Flash
 
+### For Claude Code commands
+
+- [Claude Code](https://claude.ai/code) installed and authenticated
+- Python 3.8+ (for commands that run scripts)
+
 ---
 
-## Skills
+## OpenClaw Skills
 
 ### Writing Framework
 
@@ -97,9 +111,19 @@ This repository hosts production-ready OpenClaw skills published to the [ClawHub
 
 ---
 
+## Claude Code Commands
+
+Claude Code commands live in `.claude/commands/` and are invoked as `/command-name` inside any Claude Code session. To use them, clone this repo and copy (or symlink) the `.claude/` folder into your project root.
+
+| Command | Trigger | Description |
+|---|---|---|
+| [`export-twitter-bookmarks`](./.claude/commands/export-twitter-bookmarks.md) | `/export-twitter-bookmarks` | Check for `bookmarks.json`, run the Python exporter, verify output, and report total bookmarks exported with a sample file list |
+
+---
+
 ## Installation
 
-### From ClawHub registry
+### OpenClaw skills — from ClawHub registry
 
 ```bash
 # Install a single skill
@@ -109,7 +133,7 @@ openclaw skill install <skill-name>
 openclaw skill install blog-polish-zhcn
 ```
 
-### From this repository (local)
+### OpenClaw skills — from this repository (local)
 
 ```bash
 git clone https://github.com/negtivSpaz/openclaw-custom-skills.git
@@ -119,9 +143,25 @@ cd openclaw-custom-skills
 openclaw skill install ./blog-polish-zhcn
 ```
 
+### Claude Code commands
+
+```bash
+git clone https://github.com/negtivSpaz/openclaw-custom-skills.git
+
+# Copy the .claude folder into your project
+cp -r openclaw-custom-skills/.claude /your/project/
+
+# Or use all commands globally
+cp -r openclaw-custom-skills/.claude ~/.claude
+```
+
+Then inside a Claude Code session, type `/export-twitter-bookmarks` (or whichever command) to invoke it.
+
 ---
 
 ## Usage
+
+### OpenClaw skills
 
 Each skill is invoked through the OpenClaw CLI. Refer to the individual `SKILL.md` for the full input/output contract.
 
@@ -142,9 +182,19 @@ openclaw run blog-polish-zhcn --input draftPath=./my-draft.md outputDir=./out
 
 Output filenames follow the pattern `yymmddHHMM_<title>.<ext>` for chronological sorting.
 
+### Claude Code commands
+
+```
+/export-twitter-bookmarks
+```
+
+Run this inside a Claude Code session from the project root. Claude will guide you through any missing prerequisites.
+
 ---
 
 ## Contributing
+
+### Adding an OpenClaw skill
 
 1. Fork this repository and create a feature branch: `git checkout -b feat/my-skill`
 2. Add your skill directory with a valid `SKILL.md`
@@ -152,6 +202,12 @@ Output filenames follow the pattern `yymmddHHMM_<title>.<ext>` for chronological
 4. Open a pull request against `main` with a clear description of what the skill does
 
 Skill `SKILL.md` files should declare at minimum: `name`, `version`, `author`, `description`, `inputs`, `outputs`, and a step-by-step `workflow`.
+
+### Adding a Claude Code command
+
+1. Add your command file under `.claude/commands/<command-name>.md`
+2. The filename becomes the slash command trigger (e.g., `my-tool.md` → `/my-tool`)
+3. Open a pull request with a description and example invocation
 
 ---
 
