@@ -1,5 +1,7 @@
 # openclaw-custom-skills
 
+[English](README.md) | [简体中文](README.zh-CN.md)
+
 > A curated collection of production-ready **OpenClaw** skills published to the [ClawHub](https://clawhub.ai) registry — covering content creation, multilingual blog publishing, and AI-powered media generation.
 
 [![ClawHub Registry](https://img.shields.io/badge/registry-ClawHub-blue)](https://clawhub.ai)
